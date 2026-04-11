@@ -41,3 +41,22 @@ rmr
 
 ggplot() +
   geom_sf(data = rmr, color = "black")
+
+# Pontos ----
+
+## Imagem de Satélite ----
+
+mapa <- leaflet::leaflet() |>
+  leaflet::addProviderTiles(providers$Esri.WorldImagery) |>
+  leaflet.extras::addDrawToolbar(targetGroup = "draw",
+                                 polylineOptions = TRUE,
+                                 polygonOptions = TRUE,
+                                 circleOptions = TRUE,
+                                 rectangleOptions = TRUE,
+                                 markerOptions = TRUE,
+                                 editOptions = leaflet.extras::editToolbarOptions()) |>
+  leaflet::addPolygons(data = rmr |>
+                         dplyr::summarise(geom = geom |> sf::st_union()))
+
+
+mapa
