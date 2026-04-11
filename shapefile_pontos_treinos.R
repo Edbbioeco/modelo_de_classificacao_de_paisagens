@@ -85,3 +85,15 @@ ggplot() +
   geom_sf(data = rmr, color = "black") +
   geom_sf(data = pontos_frag_shp)
 
+## Pontos fora de fragmentos ----
+
+### Marcar pontos ----
+
+pontos_fora_frag <- mapa |>
+  mapedit::editMap(targetGroup = "draw",
+                   polylineOptions = TRUE,
+                   polygonOptions = TRUE,
+                   circleOptions = TRUE,
+                   rectangleOptions = TRUE,
+                   markerOptions = TRUE,
+                   editOptions = leaflet.extras::editToolbarOptions())
