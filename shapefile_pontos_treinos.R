@@ -85,7 +85,7 @@ ggplot() +
   geom_sf(data = rmr, color = "black") +
   geom_sf(data = pontos_frag_shp)
 
-## Pontos fora de fragmentos ----
+## Pontos fora dos fragmentos ----
 
 ### Marcar pontos ----
 
