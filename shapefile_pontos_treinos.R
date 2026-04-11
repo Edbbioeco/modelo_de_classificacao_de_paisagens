@@ -74,3 +74,14 @@ pontos_frag <- mapa |>
                    markerOptions = TRUE,
                    editOptions = leaflet.extras::editToolbarOptions())
 
+### Editar shapefile ----
+
+pontos_frag_shp <- pontos_frag$drawn |>
+  dplyr::mutate(Class = 1)
+
+pontos_frag_shp
+
+ggplot() +
+  geom_sf(data = rmr, color = "black") +
+  geom_sf(data = pontos_frag_shp)
+
