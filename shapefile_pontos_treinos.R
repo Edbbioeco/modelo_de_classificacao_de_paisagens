@@ -34,7 +34,8 @@ rmr <- geobr::read_municipality(year = 2019) |>
                                  "Olinda",
                                  "Paulista",
                                  "Recife",
-                                 "São Lourenço Da Mata"))
+                                 "São Lourenço Da Mata") &
+                  abbrev_state == "PE")
 
 ### Visualizando ----
 
