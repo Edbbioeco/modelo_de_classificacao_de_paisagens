@@ -16,9 +16,7 @@ library(sf)
 
 # Dados ----
 
-## Região metropolitana de Recife ----
-
-### Importando ----
+## Importado ----
 
 rmr <- geobr::read_municipality(year = 2019) |>
   dplyr::filter(name_muni %in% c("Abreu E Lima",
@@ -37,7 +35,7 @@ rmr <- geobr::read_municipality(year = 2019) |>
                                  "São Lourenço Da Mata") &
                   abbrev_state == "PE")
 
-### Visualizando ----
+## Visualizando ----
 
 rmr
 
