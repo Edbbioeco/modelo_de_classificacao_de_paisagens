@@ -53,3 +53,10 @@ download.file("https://storage.googleapis.com/mapbiomas-public/initiatives/brasi
               mode = "wb")
 
 uso_cob <- terra::rast("mapbiomas_2024_local.tif")
+
+### Recortar ----
+
+uso_cob <- uso_cob |>
+  terra::crop(rmr) |>
+  terra::mask(rmr)
+
