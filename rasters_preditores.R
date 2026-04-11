@@ -8,6 +8,8 @@ library(terra)
 
 library(tidyterra)
 
+library(sf)
+
 library(maptiles)
 
 library(rgee)
