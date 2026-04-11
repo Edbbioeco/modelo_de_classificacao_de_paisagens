@@ -60,3 +60,17 @@ mapa <- leaflet::leaflet() |>
 
 
 mapa
+
+## Pontos em fragmentos ----
+
+### Marcar pontos ----
+
+pontos_frag <- mapa |>
+  mapedit::editMap(targetGroup = "draw",
+                   polylineOptions = TRUE,
+                   polygonOptions = TRUE,
+                   circleOptions = TRUE,
+                   rectangleOptions = TRUE,
+                   markerOptions = TRUE,
+                   editOptions = leaflet.extras::editToolbarOptions())
+
