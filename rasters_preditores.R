@@ -43,3 +43,13 @@ rmr
 
 ggplot() +
   geom_sf(data = rmr, color = "black")
+
+## Uso e cobertura do solo ----
+
+### Importar ----
+
+download.file("https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_10/lulc/coverage/brazil_coverage_2024.tif",
+              "mapbiomas_2024_local.tif",
+              mode = "wb")
+
+uso_cob <- terra::rast("mapbiomas_2024_local.tif")
