@@ -23,16 +23,22 @@ library(sf)
 rmr <- geobr::read_municipality(year = 2019) |>
   dplyr::filter(name_muni %in% c("Abreu e Lima",
                                  "Araçoiaba",
-                                 "Cabo de Santo Agostinho",
+                                 "Cabo De Santo Agostinho",
                                  "Camaragibe",
                                  "Igarassu",
                                  "Ipojuca",
-                                 "Itamaracá",
+                                 "Ilha De Itamaracá",
                                  "Itapissuma",
-                                 "Jaboatão dos Guararapes",
+                                 "Jaboatão Dos Guararapes",
                                  "Moreno",
                                  "Olinda",
                                  "Paulista",
                                  "Recife",
-                                 "São Lourenço da Mata"))
+                                 "São Lourenço Da Mata"))
 
+### Visualizando ----
+
+rmr
+
+ggplot() +
+  geom_sf(data = rmr, color = "black")
