@@ -10,8 +10,6 @@ library(leaflet.extras)
 
 library(sf)
 
-library(terra)
-
 library(mapedit)
 
 # Dados ----
