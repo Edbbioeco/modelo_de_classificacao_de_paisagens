@@ -60,3 +60,8 @@ uso_cob <- uso_cob |>
   terra::crop(rmr) |>
   terra::mask(rmr)
 
+### Visualizar ----
+
+ggplot() +
+  tidyterra::geom_spatraster(data = uso_cob) +
+  scale_fill_viridis_c(na.value = "transparent")
