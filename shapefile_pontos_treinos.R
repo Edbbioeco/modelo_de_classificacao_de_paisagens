@@ -21,7 +21,7 @@ library(sf)
 ### Importando ----
 
 rmr <- geobr::read_municipality(year = 2019) |>
-  dplyr::filter(name_muni %in% c("Abreu e Lima",
+  dplyr::filter(name_muni %in% c("Abreu E Lima",
                                  "Araçoiaba",
                                  "Cabo De Santo Agostinho",
                                  "Camaragibe",
