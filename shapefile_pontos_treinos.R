@@ -8,11 +8,11 @@ library(leaflet)
 
 library(leaflet.extras)
 
+library(sf)
+
 library(terra)
 
 library(mapedit)
-
-library(sf)
 
 # Dados ----
 
