@@ -108,3 +108,16 @@ pontos_fora_frag_shp
 ggplot() +
   geom_sf(data = rmr, color = "black") +
   geom_sf(data = pontos_fora_frag_shp)
+
+## Unir os pontos ----
+
+pontos_rmr <- ls(pattern = "frag_shp$") |>
+  mget(envir = globalenv()) |>
+  dplyr::bind_rows()
+
+pontos_rmr
+
+ggplot() +
+  geom_sf(data = rmr, color = "black") +
+  geom_sf(data = pontos_rmr, aes(color = Class)) +
+  scale_color_viridis_c()
