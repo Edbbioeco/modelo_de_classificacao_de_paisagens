@@ -44,6 +44,8 @@ rmr
 ggplot() +
   geom_sf(data = rmr, color = "black")
 
+# Rasters preditores ----
+
 ## Uso e cobertura do solo ----
 
 ### Importar ----
@@ -88,3 +90,4 @@ img_sat
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = img_sat) +
   scale_fill_viridis_c(na.value = "transparent")
+
