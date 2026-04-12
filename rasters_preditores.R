@@ -150,7 +150,7 @@ nir <- terra::rast("HLSL30.020_B05_doy2025362_aid0001_25S.tif")
 
 ### Calculo ----
 
-ndvi <- (nir - red) / (nir + red)
+ndvi <- ((nir * 0.0001) - (red * 0.0001)) / ((nir * 0.0001) + (red * 0.0001))
 
 ### Recortar ----
 
