@@ -102,17 +102,27 @@ rmr_bbox
 
 ### Requisição ----
 
-requisicao <- list(name = "ASTER_15m_rmr",
-                   params = list(dates = list(list(start = "2020-01-01",
-                                                   end = "2026-01-01")),
-                                 layers = list(list(list(product = "AST_L1T.003",
-                                                         layer = "VNIR_Band2"),
-                                                    list(product = "AST_L1T.003",
-                                                         layer = "VNIR_Band3N"))),
-                                 coordinates = list(list(id = "RMR_Area",
-                                                         box = rmr_bbox))),
-                   format = list(type = "geotiff"))
+requisicao <- data.frame(task = "ASTER_15m_RMR",
+                         subtask = "RMR_Area",
+                         product = "MCD43A4.061",
+                         layer = c("Nadir_Reflectance_Band2",
+                                   "Nadir_Reflectance_Band3"),
+                         type = "area",
+                         start = "2020-01-01",
+                         end = "2026-01-01",
+                         stringsAsFactors = FALSE,
+                         latitude = mean(rmr_bbox[2], rmr_bbox[4]),
+                         longitude = mean(rmr_bbox[1], rmr_bbox[3]))|>
+  appeears::rs_build_task(roi = rmr |>
+                            sf::st_bbox() |>
+                            sf::st_as_sfc() |>
+                            sf::st_as_sf(),
+                          format = "geotiff")
 
 requisicao
 
-appeears::rs_transfer(requisicao)
+appeears::rs_request(request = requisicao,
+                     user = "edsonbbioeco",
+                     transfer = TRUE,
+                     path = getwd(),
+                     verbose = TRUE)
