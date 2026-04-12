@@ -97,7 +97,8 @@ ggplot() +
 
 produtos <- appeears::rs_products()
 
-produtos
+produtos |>
+  dplyr::pull(ProductAndVersion)
 
 ### bbox ----
 
