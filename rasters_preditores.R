@@ -75,6 +75,12 @@ img_sat <- maptiles::get_tiles(x = rmr,
                                zoom = 14,
                                crop = TRUE)
 
+### Recortar ----
+
+img_sat <- img_sat |>
+  terra::crop(rmr) |>
+  terra::mask(rmr)
+
 ### Visualizar ----
 
 img_sat
