@@ -198,6 +198,10 @@ map_sat <- ggplot() +
   tidyterra::geom_spatraster_rgb(data = img_sat) +
   scale_color_viridis_d() +
   scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.25)) +
+  ggspatial::annotation_scale(location = "br",
+                              text_cex = 2,
+                              height = unit(0.5, "cm"),
+                              bar_cols = c("black", "gold")) +
   theme_minimal() +
   theme(axis.text = element_text(color = "black", size = 20)) +
   ggview::canvas(height = 10, width = 7.5)
@@ -217,6 +221,10 @@ map_pred <- ggplot() +
   scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.25)) +
   labs(fill = NULL) +
   coord_sf(label_graticule = "ES") +
+  ggspatial::annotation_scale(location = "br",
+                              text_cex = 2,
+                              height = unit(0.5, "cm"),
+                              bar_cols = c("black", "gold")) +
   theme_minimal() +
   theme(axis.text = element_text(color = "black", size = 20),
         legend.text =  element_text(color = "black", size = 20)) +
