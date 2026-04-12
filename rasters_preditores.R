@@ -113,8 +113,8 @@ rmr_bbox
 
 ### Requisição ----
 
-requisicao <- data.frame(task = "MCD43A4.061_Recife_30m",
-                         subtask = "MCD43A4.061_Area",
+requisicao <- data.frame(task = "time_series",
+                         subtask = "US-Ha1",
                          product = "MCD43A4.061",
                          layer = c("Nadir_Reflectance_Band3",
                                    "Nadir_Reflectance_Band4"),
