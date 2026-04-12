@@ -186,7 +186,7 @@ ndvi
 
 ggplot() +
   tidyterra::geom_spatraster(data = ndvi) +
-  scale_fill_viridis_c(na.value = "red")
+  scale_fill_viridis_c(na.value = "transparent")
 
 # Exportando ----
 
