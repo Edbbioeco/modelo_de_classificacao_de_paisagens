@@ -107,3 +107,30 @@ purrr::map(rasters, extrair_rasters)
 
 ls(pattern = "valores_") |>
   mget(envir = globalenv())
+
+## Criar os modelos ----
+
+criar_modelos <- function(valores, id_raster){
+
+  modelo <- randomForest::randomForest(Class ~.,
+                                       data = valores,
+                                       ntree = 1000)
+
+  assign(paste0("modelo_", id_raster),
+         modelo,
+         envir = globalenv())
+
+}
+
+valores <- ls(pattern = "valores_") |>
+  mget(envir = globalenv())
+
+valores
+
+id_raster <- c("uso_cob",
+               "ndvi",
+               "img_sat")
+
+id_raster
+
+purrr::map2(valores, id_raster, criar_modelos)
