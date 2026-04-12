@@ -93,6 +93,10 @@ ggplot() +
 
 ## MDVI ----
 
+### Autenticar login ----
+
+source("configurar_apppeears.R")
+
 ### lista de produtos ----
 
 produtos <- appeears::rs_products()
