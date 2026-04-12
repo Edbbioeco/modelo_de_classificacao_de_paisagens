@@ -126,3 +126,11 @@ appeears::rs_request(request = requisicao,
                      transfer = TRUE,
                      path = getwd(),
                      verbose = TRUE)
+
+# Exportando ----
+
+## Imagem de Satélite ----
+
+img_sat |>
+  terra::writeRaster("img_sat.tif")
+
