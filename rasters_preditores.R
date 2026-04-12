@@ -14,6 +14,8 @@ library(maptiles)
 
 library(appeears)
 
+library(nngeo)
+
 # Dados ----
 
 ## Shapefiles dos municípios da Região Metropolitana do Recife ----
