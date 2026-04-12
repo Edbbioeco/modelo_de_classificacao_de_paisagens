@@ -144,7 +144,9 @@ appeears::rs_request(request = requisicao,
 
 ### Importar ----
 
-ndvi <- terra::rast("appeears_ndvi.tif")
+red <- terra::rast("HLSL30.020_B04_doy2025362_aid0001_25S.tif")
+
+nir <- terra::rast("HLSL30.020_B05_doy2025362_aid0001_25S.tif")
 
 ### Recortar ----
 
