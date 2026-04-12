@@ -16,7 +16,7 @@ library(rgee)
 
 # Dados ----
 
-## Shapefiles dos municípios da Região Metropolitana do Recife
+## Shapefiles dos municípios da Região Metropolitana do Recife ----
 
 ### Importado ----
 
@@ -65,3 +65,12 @@ uso_cob <- uso_cob |>
 ggplot() +
   tidyterra::geom_spatraster(data = uso_cob) +
   scale_fill_viridis_c(na.value = "transparent")
+
+## Imagem de satélite ----
+
+### Importar ----
+
+img_sat <- maptiles::get_tiles(x = rmr,
+                               provider = "Esri.WorldImagery",
+                               zoom = 14,
+                               crop = TRUE)
