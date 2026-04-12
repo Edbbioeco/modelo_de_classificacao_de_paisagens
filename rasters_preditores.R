@@ -148,6 +148,12 @@ ndvi <- ndvi |>
   terra::crop(rmr) |>
   terra::mask(rmr)
 
+### Visualizar -----
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = ndvi) +
+  scale_fill_viridis_c(na.value = "transparent")
+
 # Exportando ----
 
 ## Imagem de Satélite ----
