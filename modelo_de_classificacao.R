@@ -58,6 +58,7 @@ uso_cob
 
 ggplot() +
   tidyterra::geom_spatraster(data = uso_cob) +
+  scale_fill_continuous(na.value = "transparent") +
   geom_sf(data = pontos, aes(color = Class)) +
   scale_color_viridis_d()
 
@@ -73,5 +74,6 @@ ndvi
 
 ggplot() +
   tidyterra::geom_spatraster(data = ndvi) +
+  scale_fill_continuous(na.value = "transparent") +
   geom_sf(data = pontos, aes(color = Class)) +
   scale_color_viridis_d()
