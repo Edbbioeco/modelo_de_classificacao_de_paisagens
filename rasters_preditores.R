@@ -99,3 +99,20 @@ rmr_bbox <- rmr |>
   sf::st_bbox()
 
 rmr_bbox
+
+### Requisição ----
+
+requisicao <- list(name = "ASTER_15m_rmr",
+                   params = list(dates = list(list(start = "2020-01-01",
+                                                   end = "2026-01-01")),
+                                 layers = list(list(list(product = "AST_L1T.003",
+                                                         layer = "VNIR_Band2"),
+                                                    list(product = "AST_L1T.003",
+                                                         layer = "VNIR_Band3N"))),
+                                 coordinates = list(list(id = "RMR_Area",
+                                                         box = rmr_bbox))),
+                   format = list(type = "geotiff"))
+
+requisicao
+
+appeears::rs_transfer(requisicao)
