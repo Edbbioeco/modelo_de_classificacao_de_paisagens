@@ -100,6 +100,10 @@ produtos <- appeears::rs_products()
 produtos |>
   dplyr::pull(ProductAndVersion)
 
+### Lista de layers ----
+
+appeears::rs_layers(product = "MCD43A4.061")
+
 ### bbox ----
 
 rmr_bbox <- rmr |>
