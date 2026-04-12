@@ -142,6 +142,12 @@ appeears::rs_request(request = requisicao,
 
 ndvi <- terra::rast("")
 
+### Recortar ----
+
+ndvi <- ndvi |>
+  terra::crop(rmr) |>
+  terra::mask(rmr)
+
 # Exportando ----
 
 ## Imagem de Satélite ----
