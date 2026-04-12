@@ -29,4 +29,4 @@ pontos
 
 ggplot() +
   geom_sf(data = pontos, aes(color = Class)) +
-  scale_color_viridis_c()
+  scale_color_viridis_d()
