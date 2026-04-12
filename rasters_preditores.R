@@ -158,6 +158,13 @@ ndvi <- ndvi |>
   terra::crop(rmr) |>
   terra::mask(rmr)
 
+### Ajuste de valores ----
+
+names(ndvi) <- "ndvi"
+
+ndvi <- ndvi |>
+  tidyterra::filter(ndvi |> dplyr::between(-1, 1))
+
 ### Visualizar -----
 
 ggplot() +
