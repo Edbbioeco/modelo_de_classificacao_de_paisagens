@@ -201,3 +201,21 @@ map_sat <- ggplot() +
   ggview::canvas(height = 10, width = 7.5)
 
 map_sat
+
+## Mapa da Predicao ----
+
+map_pred <- ggplot() +
+  tidyterra::geom_spatraster(data = pred_img_sat |>
+                               tidyterra::mutate(class = dplyr::case_when(
+                                 class == "0" ~ "Matriz",
+                                 class == "1" ~ "Fragmento"
+                               ))) +
+  scale_fill_manual(values = c("green4", "orange"),
+                    na.translate = FALSE) +
+  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.2)) +
+  labs(fill = NULL) +
+  theme_minimal() +
+  theme(text = element_text(color = "black", size = 20)) +
+  ggview::canvas(height = 10, width = 7.5)
+
+map_pred
