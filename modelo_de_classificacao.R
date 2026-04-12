@@ -45,3 +45,18 @@ ggplot() +
   tidyterra::geom_spatraster_rgb(data = img_sat) +
   geom_sf(data = pontos, aes(color = Class)) +
   scale_color_viridis_d()
+
+## Uso e cobertura do solo ----
+
+### Importar ----
+
+uso_cob <- terra::rast("uso_cob.tif")
+
+### Visualizar ----
+
+uso_cob
+
+ggplot() +
+  tidyterra::geom_spatraster(data = uso_cob) +
+  geom_sf(data = pontos, aes(color = Class)) +
+  scale_color_viridis_d()
