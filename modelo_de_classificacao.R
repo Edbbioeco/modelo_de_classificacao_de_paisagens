@@ -10,6 +10,8 @@ library(tidyterra)
 
 library(randomForest)
 
+library(ggspatial)
+
 library(ggview)
 
 library(patchwork)
