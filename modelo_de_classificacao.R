@@ -9,3 +9,19 @@ library(terra)
 library(tidyterra)
 
 library(randomForest)
+
+# Dados ----
+
+## Shapefile de pontos ----
+
+### Importar ----
+
+pontos <- sf::st_read("pontos_rmr.shp")
+
+### Visualizar ----
+
+pontos
+
+ggplot() +
+  geom_sf(data = pontos, aes(color = Class)) +
+  scale_color_viridis_c()
