@@ -180,9 +180,6 @@ ndvi <- ndvi |>
 
 names(ndvi) <- "ndvi"
 
-ndvi <- ndvi |>
-  tidyterra::filter(ndvi |> dplyr::between(-1, 1))
-
 ### Visualizar -----
 
 ndvi
