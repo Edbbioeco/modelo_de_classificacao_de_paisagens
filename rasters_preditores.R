@@ -138,6 +138,10 @@ appeears::rs_request(request = requisicao,
                      path = getwd(),
                      verbose = TRUE)
 
+### Importar ----
+
+ndvi <- terra::rast("")
+
 # Exportando ----
 
 ## Imagem de Satélite ----
