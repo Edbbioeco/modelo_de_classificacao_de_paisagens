@@ -102,7 +102,7 @@ produtos |>
 
 ### Lista de layers ----
 
-appeears::rs_layers(product = "MCD43A4.061")
+appeears::rs_layers(product = "HLSL30.020")
 
 ### bbox ----
 
@@ -115,9 +115,9 @@ rmr_bbox
 
 requisicao <- data.frame(task = "polygon",
                          subtask = "US-Ha1",
-                         product = "MCD43A4.061",
-                         layer = c("Nadir_Reflectance_Band3",
-                                   "Nadir_Reflectance_Band4"),
+                         product = "HLSL30.020",
+                         layer = c("B04",
+                                   "B05"),
                          type = "area",
                          start = "2020-01-01",
                          end = "2026-01-01",
