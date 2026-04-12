@@ -156,6 +156,10 @@ ndvi <- ((nir * 0.0001) - (red * 0.0001)) / ((nir * 0.0001) + (red * 0.0001))
 
 ### Reclassificar valores Na para -1 ----
 
+ndvi[ndvi > 1] <- NA
+
+ndvi[ndvi < -1] <- NA
+
 ndvi <- ndvi |> terra::classify(cbind(NA, -1))
 
 ### Recortar ----
