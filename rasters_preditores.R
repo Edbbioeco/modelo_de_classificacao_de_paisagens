@@ -150,7 +150,7 @@ nir <- terra::rast("HLSL30.020_B05_doy2025362_aid0001_25S.tif")
 
 ### Calculo ----
 
-ndvi <- (nir - red) + (nir + red)
+ndvi <- (nir - red) / (nir + red)
 
 ### Recortar ----
 
@@ -161,7 +161,7 @@ ndvi <- ndvi |>
 ### Visualizar -----
 
 ggplot() +
-  tidyterra::geom_spatraster_rgb(data = ndvi) +
+  tidyterra::geom_spatraster(data = ndvi) +
   scale_fill_viridis_c(na.value = "transparent")
 
 # Exportando ----
