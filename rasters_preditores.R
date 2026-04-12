@@ -149,3 +149,8 @@ img_sat |>
 
 uso_cob |>
   terra::writeRaster("uso_cob.tif")
+
+## NDVI ----
+
+ndvi |>
+  terra::writeRaster("ndvi.tif")
