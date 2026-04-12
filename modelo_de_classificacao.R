@@ -183,3 +183,17 @@ visualizar_pred <- function(predicoes){
 }
 
 purrr::map(predicoes, visualizar_pred)
+
+# Comparações ----
+
+## Mapa da imagem de satélite ----
+
+map_sat <- ggplot() +
+  tidyterra::geom_spatraster_rgb(data = img_sat) +
+  scale_color_viridis_d() +
+  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.2)) +
+  theme_minimal() +
+  theme(axis.text = element_text(color = "black", size = 20)) +
+  ggview::canvas(height = 10, width = 7.5)
+
+map_sat
