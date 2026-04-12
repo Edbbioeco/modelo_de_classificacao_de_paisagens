@@ -167,10 +167,11 @@ ndvi <- ndvi |>
 
 ### Visualizar -----
 
+ndvi
+
 ggplot() +
   tidyterra::geom_spatraster(data = ndvi) +
-  scale_fill_viridis_c(na.value = "transparent",
-                       limits = c(-1, 1))
+  scale_fill_viridis_c(na.value = "transparent")
 
 # Exportando ----
 
