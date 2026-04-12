@@ -148,6 +148,10 @@ red <- terra::rast("HLSL30.020_B04_doy2025362_aid0001_25S.tif")
 
 nir <- terra::rast("HLSL30.020_B05_doy2025362_aid0001_25S.tif")
 
+### Calculo ----
+
+ndvi <- (nir - red) + (nir + red)
+
 ### Recortar ----
 
 ndvi <- ndvi |>
