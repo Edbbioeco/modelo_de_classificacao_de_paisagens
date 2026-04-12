@@ -84,13 +84,13 @@ ggplot() +
 
 extrair_rasters <- function(rasters){
 
-  nome <- names(rasters) |>
-    stringr::str_remove_all(" ")
+  nome <- names(rasters)
 
   valores <- rasters |>
     terra::extract(pontos)
 
-  assign(paste("valores_", nome),
+  assign(paste("valores_", nome) |>
+           stringr::str_remove_all(" "),
          valores,
          envir = globalenv())
 
@@ -103,3 +103,5 @@ rasters
 
 purrr::map(rasters, extrair_rasters)
 
+ls(pattern = "valores_") |>
+  mget(envir = globalenv())
