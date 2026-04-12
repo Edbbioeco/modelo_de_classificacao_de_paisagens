@@ -10,6 +10,10 @@ library(tidyterra)
 
 library(randomForest)
 
+library(ggview)
+
+library(patchwork)
+
 # Dados ----
 
 ## Shapefile de pontos ----
