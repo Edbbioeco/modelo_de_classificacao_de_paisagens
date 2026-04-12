@@ -12,7 +12,7 @@ library(sf)
 
 library(maptiles)
 
-library(rgee)
+library(appeears)
 
 # Dados ----
 
@@ -90,4 +90,3 @@ img_sat
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = img_sat) +
   scale_fill_viridis_c(na.value = "transparent")
-
