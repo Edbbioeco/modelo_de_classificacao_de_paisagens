@@ -6,6 +6,8 @@ library(tidyverse)
 
 library(terra)
 
+library(nngeo)
+
 library(tidyterra)
 
 library(sf)
@@ -13,8 +15,6 @@ library(sf)
 library(maptiles)
 
 library(appeears)
-
-library(nngeo)
 
 # Dados ----
 
