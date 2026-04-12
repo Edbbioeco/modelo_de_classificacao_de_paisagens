@@ -93,6 +93,12 @@ ggplot() +
 
 ## MDVI ----
 
+### lista de produtos ----
+
+produtos <- appeears::rs_products()
+
+produtos
+
 ### bbox ----
 
 rmr_bbox <- rmr |>
