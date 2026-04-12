@@ -18,6 +18,11 @@ library(randomForest)
 
 pontos <- sf::st_read("pontos_rmr.shp")
 
+### Tratar ----
+
+pontos <- pontos |>
+  dplyr::mutate(Class = Class |> as.factor())
+
 ### Visualizar ----
 
 pontos
