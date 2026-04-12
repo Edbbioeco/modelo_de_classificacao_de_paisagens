@@ -195,7 +195,7 @@ purrr::map(predicoes, visualizar_pred)
 map_sat <- ggplot() +
   tidyterra::geom_spatraster_rgb(data = img_sat) +
   scale_color_viridis_d() +
-  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.2)) +
+  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.25)) +
   theme_minimal() +
   theme(axis.text = element_text(color = "black", size = 20)) +
   ggview::canvas(height = 10, width = 7.5)
@@ -212,7 +212,7 @@ map_pred <- ggplot() +
                                ))) +
   scale_fill_manual(values = c("green4", "orange"),
                     na.translate = FALSE) +
-  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.2)) +
+  scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.25)) +
   labs(fill = NULL) +
   coord_sf(label_graticule = "ES") +
   theme_minimal() +
