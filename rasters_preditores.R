@@ -74,3 +74,11 @@ img_sat <- maptiles::get_tiles(x = rmr,
                                provider = "Esri.WorldImagery",
                                zoom = 14,
                                crop = TRUE)
+
+### Visualizar ----
+
+img_sat
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = img_sat) +
+  scale_fill_viridis_c(na.value = "transparent")
