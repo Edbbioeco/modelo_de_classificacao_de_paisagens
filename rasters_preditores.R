@@ -12,8 +12,6 @@ library(sf)
 
 library(maptiles)
 
-library(appeears)
-
 # Dados ----
 
 ## Shapefiles dos municípios da Região Metropolitana do Recife ----
