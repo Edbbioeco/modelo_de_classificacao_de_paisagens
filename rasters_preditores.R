@@ -140,7 +140,7 @@ appeears::rs_request(request = requisicao,
 
 ### Importar ----
 
-ndvi <- terra::rast("")
+ndvi <- terra::rast("appeears_ndvi.tif")
 
 ### Recortar ----
 
