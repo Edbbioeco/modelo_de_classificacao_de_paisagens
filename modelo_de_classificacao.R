@@ -219,3 +219,8 @@ map_pred <- ggplot() +
   ggview::canvas(height = 10, width = 7.5)
 
 map_pred
+
+## Unir os mapas ----
+
+(map_sat + map_pred) +
+  ggview::canvas(height = 10, width = 12)
