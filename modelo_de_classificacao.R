@@ -87,7 +87,9 @@ extrair_rasters <- function(rasters){
   nome <- names(rasters)
 
   valores <- rasters |>
-    terra::extract(pontos)
+    terra::extract(pontos) |>
+    dplyr::mutate(Class = pontos$Class |> as.factor()) |>
+    dplyr::select(-ID)
 
   assign(paste("valores_", nome) |>
            stringr::str_remove_all(" "),
