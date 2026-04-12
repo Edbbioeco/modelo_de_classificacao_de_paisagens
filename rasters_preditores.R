@@ -134,3 +134,7 @@ appeears::rs_request(request = requisicao,
 img_sat |>
   terra::writeRaster("img_sat.tif")
 
+## Uso e cobertura do solo ----
+
+uso_cob |>
+  terra::writeRaster("uso_cob.tif")
