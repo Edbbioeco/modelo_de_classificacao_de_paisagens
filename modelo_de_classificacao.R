@@ -77,3 +77,29 @@ ggplot() +
   scale_fill_continuous(na.value = "transparent") +
   geom_sf(data = pontos, aes(color = Class)) +
   scale_color_viridis_d()
+
+# Modelo de classificação ----
+
+## Valores ----
+
+extrair_rasters <- function(rasters){
+
+  nome <- names(rasters) |>
+    stringr::str_remove_all(" ")
+
+  valores <- rasters |>
+    terra::extract(pontos)
+
+  assign(paste("valores_", nome),
+         valores,
+         envir = globalenv())
+
+}
+
+rasters <- c("img_sat", "uso_cob", "ndvi") |>
+  mget(envir = globalenv())
+
+rasters
+
+purrr::map(rasters, extrair_rasters)
+
