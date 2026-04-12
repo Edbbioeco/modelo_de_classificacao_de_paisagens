@@ -60,3 +60,18 @@ ggplot() +
   tidyterra::geom_spatraster(data = uso_cob) +
   geom_sf(data = pontos, aes(color = Class)) +
   scale_color_viridis_d()
+
+## NDVI ----
+
+### Importar ----
+
+ndvi <- terra::rast("ndvi.tif")
+
+### Visualizar ----
+
+ndvi
+
+ggplot() +
+  tidyterra::geom_spatraster(data = ndvi) +
+  geom_sf(data = pontos, aes(color = Class)) +
+  scale_color_viridis_d()
