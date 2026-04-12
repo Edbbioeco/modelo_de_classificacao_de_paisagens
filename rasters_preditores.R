@@ -12,6 +12,8 @@ library(sf)
 
 library(maptiles)
 
+library(appeears)
+
 # Dados ----
 
 ## Shapefiles dos municípios da Região Metropolitana do Recife ----
@@ -91,6 +93,51 @@ ggplot() +
 
 ## MDVI ----
 
+### lista de produtos ----
+
+produtos <- appeears::rs_products()
+
+produtos |>
+  dplyr::pull(ProductAndVersion)
+
+### Lista de layers ----
+
+appeears::rs_layers(product = "MCD43A4.061")
+
+### bbox ----
+
+rmr_bbox <- rmr |>
+  sf::st_bbox()
+
+rmr_bbox
+
+### Requisição ----
+
+requisicao <- data.frame(task = "polygon",
+                         subtask = "US-Ha1",
+                         product = "MCD43A4.061",
+                         layer = c("Nadir_Reflectance_Band3",
+                                   "Nadir_Reflectance_Band4"),
+                         type = "area",
+                         start = "2020-01-01",
+                         end = "2026-01-01",
+                         stringsAsFactors = FALSE,
+                         latitude = mean(rmr_bbox[2], rmr_bbox[4]),
+                         longitude = mean(rmr_bbox[1], rmr_bbox[3]))|>
+  appeears::rs_build_task(roi = rmr |>
+                            sf::st_bbox() |>
+                            sf::st_as_sfc() |>
+                            sf::st_as_sf(),
+                          format = "geotiff")
+
+requisicao
+
+appeears::rs_request(request = requisicao,
+                     user = "edsonbbioeco",
+                     transfer = TRUE,
+                     path = getwd(),
+                     verbose = TRUE)
+
 # Exportando ----
 
 ## Imagem de Satélite ----
@@ -102,4 +149,3 @@ img_sat |>
 
 uso_cob |>
   terra::writeRaster("uso_cob.tif")
-
