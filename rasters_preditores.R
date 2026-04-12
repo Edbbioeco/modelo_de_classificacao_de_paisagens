@@ -209,14 +209,17 @@ ggplot() +
 ## Imagem de Satélite ----
 
 img_sat |>
-  terra::writeRaster("img_sat.tif")
+  terra::writeRaster("img_sat.tif",
+                     overwrite = TRUE)
 
 ## Uso e cobertura do solo ----
 
 uso_cob |>
-  terra::writeRaster("uso_cob.tif")
+  terra::writeRaster("uso_cob.tif",
+                     overwrite = TRUE)
 
 ## NDVI ----
 
 ndvi |>
-  terra::writeRaster("ndvi.tif")
+  terra::writeRaster("ndvi.tif",
+                     overwrite = TRUE)
