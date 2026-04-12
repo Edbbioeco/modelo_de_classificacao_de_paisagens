@@ -214,8 +214,10 @@ map_pred <- ggplot() +
                     na.translate = FALSE) +
   scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.2)) +
   labs(fill = NULL) +
+  coord_sf(label_graticule = "ES") +
   theme_minimal() +
-  theme(text = element_text(color = "black", size = 20)) +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text =  element_text(color = "black", size = 20)) +
   ggview::canvas(height = 10, width = 7.5)
 
 map_pred
@@ -223,4 +225,4 @@ map_pred
 ## Unir os mapas ----
 
 (map_sat + map_pred) +
-  ggview::canvas(height = 10, width = 12)
+  ggview::canvas(height = 10, width = 16)
