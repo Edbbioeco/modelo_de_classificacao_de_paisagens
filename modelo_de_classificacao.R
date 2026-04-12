@@ -226,3 +226,6 @@ map_pred
 
 (map_sat + map_pred) +
   ggview::canvas(height = 10, width = 16)
+
+ggsave(filename = "mapa_predicao.png",
+       height = 10, width = 16)
