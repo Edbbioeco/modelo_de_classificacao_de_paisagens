@@ -61,8 +61,16 @@ uso_cob <- terra::rast("mapbiomas_2024_local.tif")
 ### Recortar ----
 
 uso_cob <- uso_cob |>
-  terra::crop(rmr) |>
-  terra::mask(rmr)
+  terra::crop(rmr|>
+                sf::st_union() |>
+                nngeo::st_remove_holes() |>
+                sf::st_cast("POLYGON") |>
+                sf::st_as_sf()) |>
+  terra::mask(rmr|>
+                sf::st_union() |>
+                nngeo::st_remove_holes() |>
+                sf::st_cast("POLYGON") |>
+                sf::st_as_sf())
 
 ### Visualizar ----
 
@@ -82,8 +90,16 @@ img_sat <- maptiles::get_tiles(x = rmr,
 ### Recortar ----
 
 img_sat <- img_sat |>
-  terra::crop(rmr) |>
-  terra::mask(rmr)
+  terra::crop(rmr|>
+                sf::st_union() |>
+                nngeo::st_remove_holes() |>
+                sf::st_cast("POLYGON") |>
+                sf::st_as_sf()) |>
+  terra::mask(rmr|>
+                sf::st_union() |>
+                nngeo::st_remove_holes() |>
+                sf::st_cast("POLYGON") |>
+                sf::st_as_sf())
 
 ### Visualizar ----
 
