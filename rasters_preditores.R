@@ -102,11 +102,11 @@ rmr_bbox
 
 ### Requisição ----
 
-requisicao <- data.frame(task = "ASTER_15m_RMR",
-                         subtask = "RMR_Area",
+requisicao <- data.frame(task = "MCD43A4.061_Recife_30m",
+                         subtask = "MCD43A4.061_Area",
                          product = "MCD43A4.061",
-                         layer = c("Nadir_Reflectance_Band2",
-                                   "Nadir_Reflectance_Band3"),
+                         layer = c("Nadir_Reflectance_Band3",
+                                   "Nadir_Reflectance_Band4"),
                          type = "area",
                          start = "2020-01-01",
                          end = "2026-01-01",
