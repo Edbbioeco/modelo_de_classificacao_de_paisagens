@@ -73,35 +73,11 @@ modelo
 
 ## Predições ----
 
-criar_pred <- function(id){
+predicao <- terra::predict(img_sat,
+                           modelos,
+                           na.rm = TRUE)
 
-  predicao <- terra::predict(rasters[[id]],
-                             modelos[[id]],
-                             na.rm = TRUE)
-
-  assign(paste0("pred_", id_raster[id]),
-         predicao,
-         envir = globalenv())
-
-}
-
-modelos <- list(modelo_img_sat,
-                modelo_uso_cob,
-                modelo_ndvi)
-
-modelos
-
-id_raster <- c("uso_cob",
-               "img_sat",
-               "ndvi")
-
-id_raster
-
-id <- 1:3
-
-id
-
-purrr::map(id, criar_pred)
+predicao
 
 ## Visualizar as predições ----
 
