@@ -74,7 +74,7 @@ modelo
 ## Predições ----
 
 predicao <- terra::predict(img_sat,
-                           modelos,
+                           modelo,
                            na.rm = TRUE)
 
 ## Visualizar as predições ----
