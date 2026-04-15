@@ -27,4 +27,4 @@ ggplot() +
 ## Identificar as manchas ----
 
 manchas <- predicao |>
-  terra::patches()
+  tidyterra::filter(class == "1")
