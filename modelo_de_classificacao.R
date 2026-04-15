@@ -77,14 +77,13 @@ predicao <- terra::predict(img_sat,
                            modelos,
                            na.rm = TRUE)
 
-predicao
-
 ## Visualizar as predições ----
 
-predicoes <- ls(pattern = "^pred_") |>
-  mget(envir = globalenv())
+predicao
 
-predicoes
+ggplot() +
+  tidyterra::geom_spatraster(data = predicao) +
+  scale_fill_viridis_d(na.translate = FALSE)
 
 # Comparações ----
 
