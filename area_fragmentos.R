@@ -28,3 +28,11 @@ ggplot() +
 
 manchas <- predicao |>
   tidyterra::filter(class == "1")
+
+## Visualizar ----
+
+manchas
+
+ggplot() +
+  tidyterra::geom_spatraster(data = manchas) +
+  scale_fill_viridis_d(na.translate = FALSE)
