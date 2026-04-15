@@ -85,6 +85,12 @@ ggplot() +
   tidyterra::geom_spatraster(data = predicao) +
   scale_fill_viridis_d(na.translate = FALSE)
 
+## Exportar a predição ----
+
+predicao |>
+  terra::writeRaster("predicao.tif",
+                     overwrite = TRUE)
+
 # Comparações ----
 
 ## Mapa da imagem de satélite ----
