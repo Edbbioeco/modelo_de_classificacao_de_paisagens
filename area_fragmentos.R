@@ -40,3 +40,11 @@ ggplot() +
 ## Área ----
 
 manchas |> terra::expanse() / 1e6
+
+# Converter o raster um shapefile ----
+
+## Converter ----
+
+mancha_sf <- manchas |>
+  terra::as.polygons() |>
+  sf::st_as_sf()
