@@ -86,16 +86,6 @@ predicoes <- ls(pattern = "^pred_") |>
 
 predicoes
 
-visualizar_pred <- function(predicoes){
-
-  ggplot() +
-    tidyterra::geom_spatraster(data = predicoes) +
-    scale_fill_viridis_d(na.value = "transparent")
-
-}
-
-purrr::map(predicoes, visualizar_pred)
-
 # Comparações ----
 
 ## Mapa da imagem de satélite ----
