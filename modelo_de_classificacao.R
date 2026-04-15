@@ -73,9 +73,18 @@ modelo
 
 ## Avaliando o modelo ----
 
-### Curva de Desempenho ----
-
-modelo |> plot()
+modelo$err.rate |>
+  tibble::as_tibble() |>
+  dplyr::mutate(`N-Tree` = dplyr::row_number(),
+                Estacionou = dplyr::case_when(OOB - OOB |> dplyr::lag() > 0.001 ~ "Sim",
+                                              .default = "Não")) |>
+  tidyr::pivot_longer(cols = 1:3,
+                      names_to = "Error type",
+                      values_to = "Error") |>
+  ggplot(aes(`N-Tree`, Error, color = `Error type`)) +
+  geom_line() +
+  scale_x_continuous(breaks = seq(0, 1000, 100)) +
+  theme_minimal()
 
 ## Predições ----
 
