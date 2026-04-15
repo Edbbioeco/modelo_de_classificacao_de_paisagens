@@ -71,6 +71,12 @@ modelo <- randomForest::randomForest(Class ~.,
 
 modelo
 
+## Avaliando o modelo ----
+
+### Curva de Desempenho ----
+
+modelo |> plot()
+
 ## Predições ----
 
 predicao <- terra::predict(img_sat,
