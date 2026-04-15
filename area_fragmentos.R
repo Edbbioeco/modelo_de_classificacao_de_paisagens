@@ -36,3 +36,7 @@ manchas
 ggplot() +
   tidyterra::geom_spatraster(data = manchas) +
   scale_fill_viridis_d(na.translate = FALSE)
+
+## Área ----
+
+manchas |> terra::expanse() / 1e6
