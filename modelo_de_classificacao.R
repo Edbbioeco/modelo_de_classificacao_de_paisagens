@@ -86,6 +86,14 @@ modelo$err.rate |>
   scale_x_continuous(breaks = seq(0, 1000, 100)) +
   theme_minimal()
 
+## Refazendo o modelo para apenas 200 árvores ----
+
+modelo_ref <- randomForest::randomForest(Class ~.,
+                                     data = valores,
+                                     ntree = 200)
+
+modelo_ref
+
 ## Predições ----
 
 predicao <- terra::predict(img_sat,
