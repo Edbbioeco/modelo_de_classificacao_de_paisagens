@@ -56,3 +56,8 @@ mancha_sf
 ggplot() +
   geom_sf(data = mancha_sf |>
             sf::st_union())
+
+## Exportar ----
+
+mancha_sf |>
+  sf::st_write("manchas.shp")
