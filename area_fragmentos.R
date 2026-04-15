@@ -21,3 +21,10 @@ predicao
 ggplot() +
   tidyterra::geom_spatraster(data = predicao) +
   scale_fill_viridis_d(na.translate = FALSE)
+
+# Manchas ----
+
+## Identificar as manchas ----
+
+manchas <- predicao |>
+  terra::patches()
