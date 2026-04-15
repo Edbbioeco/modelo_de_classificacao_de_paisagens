@@ -112,7 +112,7 @@ map_sat
 ## Mapa da Predicao ----
 
 map_pred <- ggplot() +
-  tidyterra::geom_spatraster(data = pred_img_sat |>
+  tidyterra::geom_spatraster(data = predicao |>
                                tidyterra::mutate(class = dplyr::case_when(
                                  class == "0" ~ "Matriz",
                                  class == "1" ~ "Fragmento"
