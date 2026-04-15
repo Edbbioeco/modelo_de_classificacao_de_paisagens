@@ -75,16 +75,16 @@ modelo
 
 modelo$err.rate |>
   tibble::as_tibble() |>
-  dplyr::mutate(`N-Tree` = dplyr::row_number(),
-                Estacionou = dplyr::case_when(OOB - OOB |> dplyr::lag() > 0.001 ~ "Sim",
-                                              .default = "Não")) |>
+  dplyr::mutate(`N-Tree` = dplyr::row_number()) |>
   tidyr::pivot_longer(cols = 1:3,
                       names_to = "Error type",
                       values_to = "Error") |>
   ggplot(aes(`N-Tree`, Error, color = `Error type`)) +
-  geom_line() +
+  geom_line(linewidth =0.75) +
   scale_x_continuous(breaks = seq(0, 1000, 100)) +
-  theme_minimal()
+  scale_color_viridis_d() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
 ## Refazendo o modelo para apenas 200 árvores ----
 
@@ -97,7 +97,7 @@ modelo_ref
 ## Predições ----
 
 predicao <- terra::predict(img_sat,
-                           modelo,
+                           modelo_ref,
                            na.rm = TRUE)
 
 ## Visualizar as predições ----
