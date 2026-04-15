@@ -39,6 +39,12 @@ ggplot() +
 
 ## Área ----
 
+### Total do raster ----
+
+predicao |> terra::expanse() / 1e6
+
+### Das manchas ----
+
 manchas |> terra::expanse() / 1e6
 
 # Converter o raster um shapefile ----
