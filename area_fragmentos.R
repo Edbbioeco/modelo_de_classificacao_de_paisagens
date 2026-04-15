@@ -48,3 +48,11 @@ manchas |> terra::expanse() / 1e6
 mancha_sf <- manchas |>
   terra::as.polygons() |>
   sf::st_as_sf()
+
+## Visualizar ----
+
+mancha_sf
+
+ggplot() +
+  geom_sf(data = mancha_sf |>
+            sf::st_union())
