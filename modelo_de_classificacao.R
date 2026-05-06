@@ -77,16 +77,30 @@ modelos
 
 ## Avaliando o modelo ----
 
-modelo$err.rate |>
-  tibble::as_tibble() |>
-  dplyr::mutate(`N-Trees` = dplyr::row_number()) |>
+purrr::imap(modelos, \(modelo, id){
+
+  modelo$err.rate |>
+    tibble::as_tibble() |>
+    dplyr::mutate(modelo = id,
+                  `N-Trees` = dplyr::row_number())
+
+  }) |>
+  dplyr::bind_rows() |>
   tidyr::pivot_longer(cols = 1:3,
                       names_to = "Error type",
                       values_to = "Error") |>
-  ggplot(aes(`N-Trees`, Error, color = `Error type`)) +
-  geom_line(linewidth =0.75) +
+  dplyr::group_by(modelo, `Error type`, `N-Trees`) |>
+  dplyr::summarise(media = Error |> mean(),
+                   min = Error |> min(),
+                   max = Error |> max(),
+                   .groups = "drop") |>
+  ggplot(aes(`N-Trees`, media, color = `Error type`, fill = `Error type`)) +
+  geom_ribbon(aes(ymin = min, ymax = max), alpha = 0.25) +
+  geom_line(linewidth = 0.75) +
   scale_x_continuous(breaks = seq(0, 1000, 100)) +
-  scale_color_viridis_d() +
+  scale_fill_manual(values = c("0" = "orange",
+                               "1" = "forestgreen",
+                               "OOB" = "black")) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
