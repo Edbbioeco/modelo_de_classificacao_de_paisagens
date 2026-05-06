@@ -156,7 +156,7 @@ predicoes_moda
 
 ## Visualizar as predições ----
 
-predicao
+predicoes_moda
 
 ggplot() +
   tidyterra::geom_spatraster(data = predicoes_moda) +
@@ -164,7 +164,7 @@ ggplot() +
 
 ## Exportar a predição ----
 
-predicao |>
+predicoes_moda |>
   terra::writeRaster("predicao.tif",
                      overwrite = TRUE)
 
@@ -189,12 +189,8 @@ map_sat
 ## Mapa da Predicao ----
 
 map_pred <- ggplot() +
-  tidyterra::geom_spatraster(data = predicao |>
-                               tidyterra::mutate(class = dplyr::case_when(
-                                 class == "0" ~ "Matriz",
-                                 class == "1" ~ "Fragmento"
-                               ))) +
-  scale_fill_manual(values = c("green4", "orange"),
+  tidyterra::geom_spatraster(data = predicoes_moda) +
+  scale_fill_manual(values = c("orange", "green4"),
                     na.translate = FALSE) +
   scale_x_continuous(breaks = seq(-35.26594, -34.82002, 0.25)) +
   labs(fill = NULL) +
