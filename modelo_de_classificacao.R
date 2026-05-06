@@ -98,13 +98,28 @@ purrr::imap(modelos, \(modelo, id){
   theme_minimal() +
   theme(legend.position = "bottom")
 
-## Refazendo o modelo para apenas 200 árvores ----
+## Escolhendo o melhor modelo  ----
 
-modelo_ref <- randomForest::randomForest(Class ~.,
-                                     data = valores,
-                                     ntree = 200)
+modelo_id <- purrr::imap(modelos, \(modelo, id){
 
-modelo_ref
+  modelo$err.rate |>
+    tibble::as_tibble() |>
+    dplyr::mutate(modelo = id,
+                  `N-Trees` = dplyr::row_number())
+
+  }) |>
+  dplyr::bind_rows() |>
+  dplyr::group_by(modelo) |>
+  dplyr::slice(1) |>
+  dplyr::arrange(OOB) |>
+  dplyr::select(OOB, modelo, `N-Trees`) |>
+  dplyr::ungroup() |>
+  dplyr::slice(1) |>
+  dplyr::pull(modelo)
+
+modelo_escolhido <- modelos[[modelo_id]]
+
+modelo_escolhido
 
 ## Predições ----
 
