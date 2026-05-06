@@ -209,6 +209,15 @@ map_pred
 ## Unir os mapas ----
 
 (map_sat + map_pred) +
+  patchwork::plot_annotation(
+    title = "Classificação da Paisagem da Região Metropolitana de Recife em Fragmentos de vegetação e matriz",
+    subtitle = "Perfil gerado através de rodadas de Apresndizado de Máquina por Random Forest"
+  ) &
+  theme_minimal() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text =  element_text(color = "black", size = 20),
+        plot.title = element_text(color = "black", size = 20),
+        plot.subtitle = element_text(color = "black", size = 17.5)) &
   ggview::canvas(height = 10, width = 16)
 
 ggsave(filename = "mapa_predicao.png",
