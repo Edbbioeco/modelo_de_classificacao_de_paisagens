@@ -125,18 +125,41 @@ modelo_escolhido
 
 predicoes <- purrr::map(1:10, ~  terra::predict(img_sat,
                                                 modelo_escolhido,
-                                                na.rm = TRUE))
+                                                na.rm = TRUE)) |>
+  terra::rast()
 
 names(predicoes) <- paste0("predicao_", 1:10)
 
 predicoes
+
+## moda da predição ----
+
+predicoes_moda <- terra::app(predicoes, \(x){
+
+  ux <- unique(x)
+
+  ux <- ux[!is.na(ux)]
+
+  ux[match(x, ux) |>
+       tabulate() |>
+       which.max()]
+
+  })
+
+predicoes_moda
+
+terra::set.cats(predicoes_moda,
+                value = data.frame(class = c(1, 2),
+                                   class_name = c("Matriz", "Fragmento")))
+
+predicoes_moda
 
 ## Visualizar as predições ----
 
 predicao
 
 ggplot() +
-  tidyterra::geom_spatraster(data = predicao) +
+  tidyterra::geom_spatraster(data = predicoes_moda) +
   scale_fill_viridis_d(na.translate = FALSE)
 
 ## Exportar a predição ----
