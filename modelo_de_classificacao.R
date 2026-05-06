@@ -65,11 +65,15 @@ valores
 
 ## Criar os modelos ----
 
-modelo <- randomForest::randomForest(Class ~.,
-                                       data = valores,
-                                       ntree = 1000)
+id <- 1:500
 
-modelo
+modelos <- purrr::map(id, ~ randomForest::randomForest(Class ~.,
+                                                       data = valores,
+                                                       ntree = 1000))
+
+names(modelos) <- paste0("modelo_", id)
+
+modelos
 
 ## Avaliando o modelo ----
 
