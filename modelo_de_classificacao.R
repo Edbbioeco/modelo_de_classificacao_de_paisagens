@@ -123,9 +123,13 @@ modelo_escolhido
 
 ## Predições ----
 
-predicao <- terra::predict(img_sat,
-                           modelo_ref,
-                           na.rm = TRUE)
+predicoes <- purrr::map(1:10, ~  terra::predict(img_sat,
+                                                modelo_escolhido,
+                                                na.rm = TRUE))
+
+names(predicoes) <- paste0("predicao_", 1:10)
+
+predicoes
 
 ## Visualizar as predições ----
 
