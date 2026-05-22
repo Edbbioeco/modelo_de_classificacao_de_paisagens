@@ -69,7 +69,8 @@ id <- 1:500
 
 modelos <- purrr::map(id, ~ randomForest::randomForest(Class ~.,
                                                        data = valores,
-                                                       ntree = 500))
+                                                       ntree = 500),
+                      .progress = TRUE)
 
 names(modelos) <- paste0("modelo_", id)
 
@@ -84,7 +85,8 @@ purrr::imap(modelos, \(modelo, id){
     dplyr::mutate(modelo = id,
                   `N-Trees` = dplyr::row_number())
 
-  }) |>
+  },
+  .progress = TRUE) |>
   dplyr::bind_rows() |>
   tidyr::pivot_longer(cols = 1:3,
                       names_to = "Error type",
@@ -107,7 +109,8 @@ modelo_id <- purrr::imap(modelos, \(modelo, id){
     dplyr::mutate(modelo = id,
                   `N-Trees` = dplyr::row_number())
 
-  }) |>
+  },
+  .progress = TRUE) |>
   dplyr::bind_rows() |>
   dplyr::group_by(modelo) |>
   dplyr::slice(1) |>
@@ -125,7 +128,8 @@ modelo_escolhido
 
 predicoes <- purrr::map(1:10, ~  terra::predict(img_sat,
                                                 modelo_escolhido,
-                                                na.rm = TRUE)) |>
+                                                na.rm = TRUE),
+                        .progress = TRUE) |>
   terra::rast()
 
 names(predicoes) <- paste0("predicao_", 1:10)
