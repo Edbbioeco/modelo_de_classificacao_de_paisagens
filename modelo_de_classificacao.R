@@ -137,17 +137,8 @@ predicoes
 
 ## moda da predição ----
 
-predicoes_moda <- terra::app(predicoes, \(x){
-
-  ux <- unique(x)
-
-  ux <- ux[!is.na(ux)]
-
-  ux[match(x, ux) |>
-       tabulate() |>
-       which.max()]
-
-  })
+predicoes_moda <- terra::app(predicoes,
+                             DescTools::Mode() |> as.character())
 
 predicoes_moda
 
