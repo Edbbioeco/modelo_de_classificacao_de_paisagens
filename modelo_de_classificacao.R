@@ -138,7 +138,7 @@ predicoes
 ## moda da predição ----
 
 predicoes_moda <- terra::app(predicoes,
-                             DescTools::Mode() |> as.character())
+                             DescTools::Mode()[1])
 
 predicoes_moda
 
