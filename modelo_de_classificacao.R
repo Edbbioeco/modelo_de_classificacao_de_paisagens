@@ -70,9 +70,8 @@ id <- 1:500
 modelos <- purrr::map(id, ~ randomForest::randomForest(Class ~.,
                                                        data = valores,
                                                        ntree = 500),
-                      .progress = TRUE)
-
-names(modelos) <- paste0("modelo_", id)
+                      .progress = TRUE) |>
+  setNames(paste0("modelo_", id))
 
 modelos
 
