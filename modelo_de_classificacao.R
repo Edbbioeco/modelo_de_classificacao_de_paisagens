@@ -141,9 +141,8 @@ predicoes <- purrr::map(1:10,
 
                           ),
                         .progress = TRUE) |>
-  terra::rast()
-
-names(predicoes) <- paste0("predicao_", 1:10)
+  terra::rast() |>
+  setNames(paste0("predicao_", 1:10))
 
 predicoes
 
