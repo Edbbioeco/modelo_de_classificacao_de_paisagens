@@ -69,9 +69,14 @@ valores
 
 id <- 1:500
 
-modelos <- purrr::map(id, ~ randomForest::randomForest(Class ~.,
-                                                       data = valores,
-                                                       ntree = 500),
+modelos <- purrr::map(id,
+                      purrr::in_parallel(
+
+                        ~randomForest::randomForest(Class ~.x,
+                                                    data = valores,
+                                                    ntree = 500)
+
+                        ),
                       .progress = TRUE) |>
   setNames(paste0("modelo_", id))
 
