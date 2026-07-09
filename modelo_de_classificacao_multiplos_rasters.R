@@ -154,20 +154,15 @@ predicoes
 
 ## Visualizar as predições ----
 
-predicoes <- ls(pattern = "^pred_") |>
-  mget(envir = globalenv())
+purrr::map(predicoes,
+           purrr::in_parallel(
 
-predicoes
+             ~ggplot() +
+               tidyterra::geom_spatraster(data = .x) +
+               scale_fill_viridis_d(na.value = "transparent")
 
-visualizar_pred <- function(predicoes){
-
-  ggplot() +
-    tidyterra::geom_spatraster(data = predicoes) +
-    scale_fill_viridis_d(na.value = "transparent")
-
-}
-
-purrr::map(predicoes, visualizar_pred)
+             ),
+           .progress = TRUE)
 
 # Comparações ----
 
