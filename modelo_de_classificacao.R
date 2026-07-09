@@ -132,9 +132,14 @@ modelo_escolhido
 
 ## Predições ----
 
-predicoes <- purrr::map(1:10, ~  terra::predict(img_sat,
-                                                modelo_escolhido,
-                                                na.rm = TRUE),
+predicoes <- purrr::map(1:10,
+                        purrr::in_parallel(
+
+                          ~terra::predict(img_sat,
+                                          modelo_escolhido,
+                                          na.rm = TRUE)
+
+                          ),
                         .progress = TRUE) |>
   terra::rast()
 
