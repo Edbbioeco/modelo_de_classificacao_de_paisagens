@@ -74,7 +74,7 @@ pontos_frag <- mapa |>
 
 ### Editar shapefile ----
 
-pontos_frag_shp <- pontos_frag$drawn |>
+pontos_frag_shp <- pontos_frag$finished |>
   dplyr::mutate(Class = 1)
 
 pontos_frag_shp
@@ -98,7 +98,7 @@ pontos_fora_frag <- mapa |>
 
 ### Editar shapefile ----
 
-pontos_fora_frag_shp <- pontos_fora_frag$drawn |>
+pontos_fora_frag_shp <- pontos_fora_frag$finished |>
   dplyr::mutate(Class = 0)
 
 pontos_fora_frag_shp
