@@ -88,6 +88,12 @@ ggplot() +
 
 ## Valores ----
 
+rasters <- list(uso_cob,
+                ndvi,
+                img_sat)
+
+rasters
+
 valores <- purrr::map(rasters,
                       purrr::in_parallel(
 
