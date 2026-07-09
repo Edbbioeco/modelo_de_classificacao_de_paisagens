@@ -101,26 +101,9 @@ valores <- purrr::map(rasters,
   setNames(paste0("valores_", rasters |> names()) |>
              stringr::str_remove_all(" "))
 
-rasters
+valores
 
 ## Criar os modelos ----
-
-criar_modelos <- function(valores, id_raster){
-
-  modelo <- randomForest::randomForest(Class ~.,
-                                       data = valores,
-                                       ntree = 1000)
-
-  assign(paste0("modelo_", id_raster),
-         modelo,
-         envir = globalenv())
-
-}
-
-valores <- ls(pattern = "valores_") |>
-  mget(envir = globalenv())
-
-valores
 
 id_raster <- c("uso_cob",
                "ndvi",
@@ -128,7 +111,18 @@ id_raster <- c("uso_cob",
 
 id_raster
 
-purrr::map2(valores, id_raster, criar_modelos)
+modelos <- purrr::map(valores,
+                      purrr::in_parallel(
+
+                        ~randomForest::randomForest(Class ~.,
+                                                    data = .x,
+                                                    ntree = 1000)
+
+                        ),
+                      .progress = TRUE) |>
+  setNames(paste0("modelo_", id_raster))
+
+modelos
 
 ## Predições ----
 
