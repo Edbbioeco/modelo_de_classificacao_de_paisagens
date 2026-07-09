@@ -88,31 +88,20 @@ ggplot() +
 
 ## Valores ----
 
-extrair_rasters <- function(rasters){
+valores <- purrr::map(rasters,
+                      purrr::in_parallel(
 
-  nome <- names(rasters)
+                        ~.x |>
+                          terra::extract(pontos) |>
+                          dplyr::mutate(Class = pontos$Class |> as.factor()) |>
+                          dplyr::select(-ID)
 
-  valores <- rasters |>
-    terra::extract(pontos) |>
-    dplyr::mutate(Class = pontos$Class |> as.factor()) |>
-    dplyr::select(-ID)
-
-  assign(paste("valores_", nome) |>
-           stringr::str_remove_all(" "),
-         valores,
-         envir = globalenv())
-
-}
-
-rasters <- c("img_sat", "uso_cob", "ndvi") |>
-  mget(envir = globalenv())
+                        ),
+                      .progress = TRUE) |>
+  setNames(paste0("valores_", rasters |> names()) |>
+             stringr::str_remove_all(" "))
 
 rasters
-
-purrr::map(rasters, extrair_rasters)
-
-ls(pattern = "valores_") |>
-  mget(envir = globalenv())
 
 ## Criar os modelos ----
 
