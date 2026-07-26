@@ -84,7 +84,7 @@ modelos
 
 ## Avaliando o modelo ----
 
-purrr::imap(modelos, \(modelo, id){
+purrr::imap_dfr(modelos, \(modelo, id){
 
   modelo$err.rate |>
     tibble::as_tibble() |>
@@ -93,7 +93,6 @@ purrr::imap(modelos, \(modelo, id){
 
   },
   .progress = TRUE) |>
-  dplyr::bind_rows() |>
   tidyr::pivot_longer(cols = 1:3,
                       names_to = "Error type",
                       values_to = "Error") |>
@@ -108,7 +107,7 @@ purrr::imap(modelos, \(modelo, id){
 
 ## Escolhendo o melhor modelo  ----
 
-modelo_id <- purrr::imap(modelos, \(modelo, id){
+modelo_id <- purrr::imap_dfr(modelos, \(modelo, id){
 
   modelo$err.rate |>
     tibble::as_tibble() |>
@@ -117,7 +116,6 @@ modelo_id <- purrr::imap(modelos, \(modelo, id){
 
   },
   .progress = TRUE) |>
-  dplyr::bind_rows() |>
   dplyr::group_by(modelo) |>
   dplyr::slice(1) |>
   dplyr::arrange(OOB) |>
