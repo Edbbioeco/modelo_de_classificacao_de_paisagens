@@ -122,8 +122,12 @@ pontos_rmr
 
 ggplot() +
   geom_sf(data = rmr, color = "black") +
-  geom_sf(data = pontos_rmr, size = 5, aes(color = Class)) +
-  scale_color_viridis_c()
+  geom_sf(data = pontos_rmr, aes(fill = Class),
+          size = 5,
+          shape = 21,
+          color = "black",
+          strike = 1) +
+  scale_fill_viridis_c()
 
 ## Exportar os pontos ----
 
