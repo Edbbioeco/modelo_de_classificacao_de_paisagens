@@ -128,4 +128,4 @@ ggplot() +
 ## Exportar os pontos ----
 
 pontos_rmr |>
-  sf::st_write("pontos_rmr.shp")
+  sf::st_write("pontos_rmr.gpkg")
