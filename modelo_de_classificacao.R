@@ -93,7 +93,7 @@ cdse_client <- CDSE::GetOAuthClient(id = Sys.getenv("CDSE_ID"),
 
 ### Catálogo ----
 
-catalogo <- CDSE::SearchCatalog(aoi = pontos,
+catalogo <- CDSE::SearchCatalog(aoi = rmr_trart,
                                 from = "2025-01-01",
                                 to = "2026-11-01",
                                 collection = "sentinel-2-l2a",
