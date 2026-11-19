@@ -10,7 +10,7 @@ library(terra)
 
 library(tidyterra)
 
-library(randomForest)
+library(ranger)
 
 library(DescTools)
 
