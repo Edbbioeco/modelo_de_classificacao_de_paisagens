@@ -46,6 +46,11 @@ ggplot() +
 
 ## Raster de imagem de satélite ----
 
+### Autenticar usuário ----
+
+cdse_client <- CDSE::GetOAuthClient(id = Sys.getenv("CDSE_ID"),
+                                    secret = Sys.getenv("CDSE_SECRET"))
+
 ### Importar ----
 
 img_sat <- terra::rast("img_sat.tif")
