@@ -20,6 +20,27 @@ library(patchwork)
 
 # Dados ----
 
+## Shapefile da região metropolitana de Recife ----
+
+### Importado ----
+
+rmr <- geobr::read_municipality(year = 2019) |>
+  dplyr::filter(name_muni %in% c("Abreu E Lima",
+                                 "Araçoiaba",
+                                 "Cabo de Santo Agostinho",
+                                 "Camaragibe",
+                                 "Igarassu",
+                                 "Ipojuca",
+                                 "Ilha de Itamaracá",
+                                 "Itapissuma",
+                                 "Jaboatão dos Guararapes",
+                                 "Moreno",
+                                 "Olinda",
+                                 "Paulista",
+                                 "Recife",
+                                 "São Lourenço da Mata") &
+                  abbrev_state == "PE")
+
 ## Shapefile de pontos ----
 
 ### Importar ----
