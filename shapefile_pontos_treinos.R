@@ -19,18 +19,18 @@ library(mapedit)
 rmr <- geobr::read_municipality(year = 2019) |>
   dplyr::filter(name_muni %in% c("Abreu E Lima",
                                  "Araçoiaba",
-                                 "Cabo De Santo Agostinho",
+                                 "Cabo de Santo Agostinho",
                                  "Camaragibe",
                                  "Igarassu",
                                  "Ipojuca",
-                                 "Ilha De Itamaracá",
+                                 "Ilha de Itamaracá",
                                  "Itapissuma",
-                                 "Jaboatão Dos Guararapes",
+                                 "Jaboatão dos Guararapes",
                                  "Moreno",
                                  "Olinda",
                                  "Paulista",
                                  "Recife",
-                                 "São Lourenço Da Mata") &
+                                 "São Lourenço da Mata") &
                   abbrev_state == "PE")
 
 ## Visualizando ----
