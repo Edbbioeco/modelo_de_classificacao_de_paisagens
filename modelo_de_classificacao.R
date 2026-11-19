@@ -63,6 +63,14 @@ catalogo <- CDSE::SearchCatalog(aoi = pontos,
 
 catalogo
 
+### Periodo ----
+
+data <- catalogo |>
+  dplyr::slice_min(tileCloudCover, n = 1) |>
+  dplyr::pull(acquisitionDate)
+
+data
+
 ### Importar ----
 
 img_sat <- terra::rast("img_sat.tif")
