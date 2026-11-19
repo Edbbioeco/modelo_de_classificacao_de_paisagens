@@ -48,6 +48,18 @@ rmr
 ggplot() +
   geom_sf(data = rmr, color = "black")
 
+### Tratar ----
+
+rmr_trart <- rmr |>
+  sf::st_make_valid() |>
+  dplyr::summarise(geometry = geometry |> sf::st_union()) |>
+  nngeo::st_remove_holes()
+
+rmr_trart
+
+ggplot() +
+  geom_sf(data = rmr_trart, color = "black")
+
 ## Shapefile de pontos ----
 
 ### Importar ----
