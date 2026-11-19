@@ -10,6 +10,8 @@ library(leaflet.extras)
 
 library(sf)
 
+library(nngeo)
+
 library(mapedit)
 
 # Dados ----
