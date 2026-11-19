@@ -36,8 +36,13 @@ pontos <- pontos |>
 pontos
 
 ggplot() +
-  geom_sf(data = pontos, aes(color = Class)) +
-  scale_color_viridis_d()
+  geom_sf(data = pontos,
+          aes(fill = Class),
+          size = 5,
+          shape = 21,
+          color = "black",
+          stroke = 1) +
+  scale_fill_viridis_d()
 
 ## Raster de imagem de satélite ----
 
