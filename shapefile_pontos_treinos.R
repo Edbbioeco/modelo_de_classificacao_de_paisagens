@@ -58,7 +58,8 @@ mapa <- leaflet::leaflet() |>
   leaflet::addPolygons(data = rmr |>
                          sf::st_make_valid() |>
                          dplyr::summarise(geometry = geometry |> sf::st_union()) |>
-                         nngeo::st_remove_holes())
+                         nngeo::st_remove_holes(),
+                       fillOpacity = 0)
 
 
 mapa
