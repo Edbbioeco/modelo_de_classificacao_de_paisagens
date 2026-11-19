@@ -2,9 +2,9 @@
 
 library(geobr)
 
-library(sf)
-
 library(tidyverse)
+
+library(sf)
 
 library(terra)
 
