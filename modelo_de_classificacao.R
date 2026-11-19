@@ -51,6 +51,18 @@ ggplot() +
 cdse_client <- CDSE::GetOAuthClient(id = Sys.getenv("CDSE_ID"),
                                     secret = Sys.getenv("CDSE_SECRET"))
 
+### Catálogo ----
+
+catalogo <- CDSE::SearchCatalog(aoi = pontos,
+                                from = "2025-01-01",
+                                to = "2026-11-01",
+                                collection = "sentinel-2-l2a",
+                                with_geometry = FALSE,
+                                filter = "eo:cloud_cover < 5",
+                                client = cdse_client)
+
+catalogo
+
 ### Importar ----
 
 img_sat <- terra::rast("img_sat.tif")
