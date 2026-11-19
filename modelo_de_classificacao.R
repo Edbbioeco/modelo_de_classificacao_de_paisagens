@@ -41,6 +41,13 @@ rmr <- geobr::read_municipality(year = 2019) |>
                                  "São Lourenço da Mata") &
                   abbrev_state == "PE")
 
+### Visualizando ----
+
+rmr
+
+ggplot() +
+  geom_sf(data = rmr, color = "black")
+
 ## Shapefile de pontos ----
 
 ### Importar ----
