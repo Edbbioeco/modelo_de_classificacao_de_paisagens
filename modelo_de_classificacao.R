@@ -24,7 +24,7 @@ library(patchwork)
 
 ### Importar ----
 
-pontos <- sf::st_read("pontos_rmr.shp")
+pontos <- sf::st_read("pontos_rmr.gpkg")
 
 ### Tratar ----
 
