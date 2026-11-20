@@ -155,3 +155,11 @@ rasters <- purrr::pmap(
     },
   .progress = TRUE) |>
   terra::rast()
+
+### Tratar os nomes dios rasters ----
+
+rasters
+
+names(rasters) <- c("NDVI", "R", "G", "B")
+
+rasters
