@@ -163,3 +163,16 @@ rasters
 names(rasters) <- c("NDVI", "R", "G", "B")
 
 rasters
+
+### Visualizar ----
+
+rasters
+
+ggplot() +
+  tidyterra::geom_spatraster(data = rasters[[1]]) +
+  tidyterra::scale_fill_hypso_c(palette = "colombia_hypso",
+                                direction = -1,
+                                na.value = "transparent")
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = rasters[[2:4]])
