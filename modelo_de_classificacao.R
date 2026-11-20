@@ -154,7 +154,9 @@ rasters <- purrr::pmap(
 
     },
   .progress = TRUE) |>
-  terra::rast()
+  terra::rast() |>
+  terra::mask(rmr_trart) |>
+  terra::crop(rmr_trart)
 
 ### Tratar os nomes dios rasters ----
 
