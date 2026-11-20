@@ -124,3 +124,12 @@ evalscript_rgb <- system.file("scripts",
                               package = "CDSE")
 
 evalscript_rgb
+
+### NDVI ----
+
+evalscript_ndvi <- rsi::spectral_indices() |>
+  dplyr::filter(short_name == "NDVI") |>
+  CDSE::MakeEvalScript(constellation = "sentinel-2") |>
+  paste(collapse = "\n")
+
+evalscript_ndvi
