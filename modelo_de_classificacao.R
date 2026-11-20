@@ -8,6 +8,8 @@ library(sf)
 
 library(CDSE)
 
+library(rsi)
+
 library(terra)
 
 library(tidyterra)
