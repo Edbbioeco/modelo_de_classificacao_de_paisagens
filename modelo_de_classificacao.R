@@ -133,3 +133,25 @@ evalscript_ndvi <- rsi::spectral_indices() |>
   paste(collapse = "\n")
 
 evalscript_ndvi
+
+## Baixar rasters ----
+
+rasters <- purrr::pmap(
+  list(evalscripts = ls(pattern = "^evalscript") |>
+         mget(envir = globalenv())),
+  \(evalscripts){
+
+    CDSE::GetImage(bbox = rmr_trart |> sf::st_bbox(),
+                   time_range = data,
+                   script = evalscripts,
+                   collection = "sentinel-2-l2a",
+                   format = "image/tiff",
+                   mosaicking_order = "leastRecent",
+                   resolution = 50,
+                   mask = TRUE,
+                   buffer = 100,
+                   client = cdse_client)
+
+    },
+  .progress = TRUE) |>
+  terra::rast()
