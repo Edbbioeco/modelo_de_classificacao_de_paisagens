@@ -115,3 +115,12 @@ data <- catalogo |>
 
 data
 
+## Evalscripts ----
+
+### RGB ----
+
+evalscript_rgb <- system.file("scripts",
+                              "TrueColor.js",
+                              package = "CDSE")
+
+evalscript_rgb
