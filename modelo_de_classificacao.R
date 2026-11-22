@@ -241,3 +241,11 @@ valores <- valores |>
   dplyr::filter(ID != id_na)
 
 valores
+
+## Distância de autocorrelação ----
+
+ac <- blockCV::cv_spatial_autocor(r = rasters |>
+                                    terra::project("EPSG:31985"),
+                                  num_sample = 5000)
+
+ac
