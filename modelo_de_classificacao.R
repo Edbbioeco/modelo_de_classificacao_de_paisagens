@@ -238,3 +238,15 @@ ac <- blockCV::cv_spatial_autocor(r = rasters |>
                                   num_sample = 5000)
 
 ac
+
+## Validação cruzada ----
+
+cv <- blockCV::cv_spatial(x = valores |>
+                            dplyr::select(-c(1:2)),
+                          column = "classe",
+                          size = ac$range,
+                          k = 5,
+                          selection = "random",
+                          iteration = 100)
+
+cv
