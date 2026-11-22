@@ -292,10 +292,11 @@ metricas |>
 ## Modelo final ----
 
 ### Criar modelo ----
+
 randomforest <- ranger::ranger(Class ~ .,
                                data = valores |>
                                  dplyr::select(-c(1:2)) |>
-                                 sf::st_drop_geometry(valores),
+                                 sf::st_drop_geometry(),
                                num.trees = 500,
                                class.weights = 1 / as.vector(table(valores$Class)),
                                probability = TRUE,
