@@ -288,3 +288,17 @@ metricas
 metricas |>
   dplyr::summarise(media = mean(acuracia),
                    sd = sd(acuracia))
+
+## Modelo final ----
+
+### Criar modelo ----
+randomforest <- ranger::ranger(Class ~ .,
+                               data = valores |>
+                                 dplyr::select(-c(1:2)) |>
+                                 sf::st_drop_geometry(valores),
+                               num.trees = 500,
+                               class.weights = 1 / as.vector(table(valores$Class)),
+                               probability = TRUE,
+                               importance = "permutation")
+
+randomforest
