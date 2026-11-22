@@ -251,6 +251,13 @@ cv <- blockCV::cv_spatial(x = valores |>
 
 cv
 
+ggplot() +
+  geom_sf(data = cv$blocks)
+
+cv$blocks |>
+  sf::st_transform(crs = 31985) |>
+  sf::st_area()
+
 ## Métricas das variáveis ----
 
 metricas <- cv$folds_list |>
