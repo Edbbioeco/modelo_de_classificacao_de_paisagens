@@ -186,12 +186,16 @@ ggplot() +
 rasters <- c(rasters,
              vari = c(rasters$G - rasters$R) / (rasters$G + rasters$R - rasters$B),
              exg = 2 * rasters$G - rasters$R - rasters$B,
-             sd_g_3 = terra::focal(rasters$G, w = 3, fun = "sd"),
-             sd_g_7 = terra::focal(rasters$G, w = 7, fun = "sd"),
-             sd_g_15 = terra::focal(rasters$G, w = 15, fun = "sd"))
+             sd_g_3 = terra::focal(rasters$G, w = 3, fun = "sd",
+                                   na.rm = TRUE, expand = TRUE),
+             sd_g_7 = terra::focal(rasters$G, w = 7, fun = "sd",
+                                   na.rm = TRUE, expand = TRUE),
+             sd_g_15 = terra::focal(rasters$G, w = 15, fun = "sd",
+                                    na.rm = TRUE, expand = TRUE))
 
 names(rasters) <- c("NDVI", "R", "G", "B",
                     "vari", "exg", "sd_g_3", "sd_g_7", "sd_g_15")
+
 rasters$vari <- rasters$vari |>
   terra::subst(from = c(-Inf, Inf), to = NA) |>
   terra::clamp(lower = -1, upper = 1, values = FALSE)
@@ -223,3 +227,12 @@ valores <- rasters |>
   terra::extract(pontos)
 
 valores
+
+## Checar o ponto 158 ----
+valores |>
+  dplyr::filter(ID == 158)
+
+rasters |>
+  terra::extract(pontos[158, ]) |>
+  dplyr::mutate(den = G + R - B,
+                num = G - R)
