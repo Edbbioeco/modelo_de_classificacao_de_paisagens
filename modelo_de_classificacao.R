@@ -223,22 +223,11 @@ ggplot() +
 
 ## Extrair os dados ----
 
-valores <- rasters |>
-  terra::extract(pontos) |>
-  dplyr::mutate(classe = pontos$Class)
-
-valores
-
-## Checar a existância de NAs ----
-
-id_na <- valores |>
-  dplyr::filter(dplyr::if_any(dplyr::everything(), is.na)) |>
-  dplyr::pull(ID)
-
-id_na
-
-valores <- valores |>
-  dplyr::filter(ID != id_na)
+valores <- pontos |>
+  dplyr::bind_cols(terra::extract(rasters,
+                                  terra::vect(pontos),
+                                  ID = FALSE)) |>
+  tidyr::drop_na()
 
 valores
 
