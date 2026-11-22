@@ -250,3 +250,34 @@ cv <- blockCV::cv_spatial(x = valores |>
                           iteration = 100)
 
 cv
+
+## Métricas das variáveis ----
+
+metricas <- cv$folds_list |>
+  purrr::map_dfr(
+    \(folder){
+
+      treino <- valores[folder[[1]], ] |>
+        sf::st_drop_geometry()
+
+      teste <- valores[folder[[2]], ] |>
+        sf::st_drop_geometry()
+
+      rf <- ranger::ranger(Class ~ .,
+                           data = treino,
+                           num.trees = 500,
+                           class.weights = 1 / as.vector(table(treino$Class)))
+
+      pred <- stats::predict(rf, teste)$predictions
+
+      tibble::tibble(acuracia = mean(pred == teste$Class))
+
+    },
+    .id = "fold",
+    .progress = TRUE)
+
+metricas
+
+metricas |>
+  dplyr::summarise(media = mean(acuracia),
+                   sd = sd(acuracia))
