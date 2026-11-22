@@ -228,11 +228,15 @@ valores <- rasters |>
 
 valores
 
-## Checar o ponto 158 ----
-valores |>
-  dplyr::filter(ID == 158)
+## Checar a existância de NAs ----
 
-rasters |>
-  terra::extract(pontos[158, ]) |>
-  dplyr::mutate(den = G + R - B,
-                num = G - R)
+id_na <- valores |>
+  dplyr::filter(dplyr::if_any(dplyr::everything(), is.na)) |>
+  dplyr::pull(ID)
+
+id_na
+
+valores <- valores |>
+  dplyr::filter(ID != id_na)
+
+valores
