@@ -304,7 +304,7 @@ randomforest <- ranger::ranger(Class ~ .,
 
 randomforest
 
-## Importância das variáveis ----
+### Importância das variáveis ----
 
 randomforest |>
   ranger::importance() |>
