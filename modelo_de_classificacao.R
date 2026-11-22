@@ -342,3 +342,117 @@ ggplot() +
   theme(axis.text = element_text(color = "black", size = 20),
         axis.title = element_text(color = "black", size = 20),
         axis.line = element_line(color = "black", linewidth = 1))
+
+### Mapa de classes ----
+
+raster_pred_class <- raster_pred |>
+  dplyr::mutate(lyr1 = dplyr::case_when(lyr1 >= 0.5 ~ "Floresta",
+                                        lyr1 < 0.5 ~ "Matriz") |>
+                  forcats::fct_relevel(c("Matriz", "Floresta")))
+
+raster_pred_class
+
+ggplot() +
+  tidyterra::geom_spatraster(data = raster_pred_class) +
+  scale_fill_manual(values = c("orange", "forestgreen"),
+                    na.value = "transparent") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        axis.title = element_text(color = "black", size = 20),
+        axis.line = element_line(color = "black", linewidth = 1))
+
+## Mapa ----
+
+### Mapas das variáveis ----
+
+mapa_var_ndvi <- ggplot() +
+  tidyterra::geom_spatraster(data = rasters[[1]]) +
+  tidyterra::scale_fill_hypso_c(palette = "colombia_hypso",
+                                direction = -1,
+                                na.value = "transparent",
+                                guide = guide_colourbar(
+                                  title = "NDVI",
+                                  title.vjust = 0.5,
+                                  barheight = 20,
+                                  barwidth = 2.5,
+                                  frame.colour = "black"
+                                  )) +
+  geom_sf(data = rmr_trart, color = "black", fill = "transparent", linewidth = 1) +
+  labs(title = "NDVI") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        plot.title = element_text(color = "black", size = 30, hjust = 0.5),
+        axis.line = element_line(color = "black", linewidth = 1))
+
+mapa_var_ndvi
+
+mapa_var_rgb <- ggplot() +
+  tidyterra::geom_spatraster_rgb(data = rasters[[2:4]]) +
+  geom_sf(data = rmr_trart, color = "black", fill = "transparent", linewidth = 1) +
+  labs(title = "RGB") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        plot.title = element_text(color = "black", size = 30, hjust = 0.5),
+        axis.line = element_line(color = "black", linewidth = 1))
+
+mapa_var_rgb
+
+mapa_var_vari <- ggplot() +
+  tidyterra::geom_spatraster(data = rasters[[5]]) +
+  scale_fill_distiller(palette = "RdYlGn",
+                       direction = 1,
+                       limits = c(-1, 1),
+                       na.value = "transparent",
+                       guide = guide_colourbar(
+                         title = "VARI",
+                         title.vjust = 0.5,
+                         barheight = 20,
+                         barwidth = 2.5,
+                         frame.colour = "black"
+                       )) +
+  geom_sf(data = rmr_trart, color = "black", fill = "transparent", linewidth = 1) +
+  labs(title = "VARI") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        plot.title = element_text(color = "black", size = 30, hjust = 0.5),
+        axis.line = element_line(color = "black", linewidth = 1))
+
+mapa_var_vari
+
+mapa_var_sd <- ggplot() +
+  tidyterra::geom_spatraster(data = rasters[[6:9]]) +
+  tidyterra::scale_fill_hypso_c(palette = "colombia_hypso",
+                                direction = -1,
+                                na.value = "transparent",
+                                guide = guide_colourbar(
+                                  title = "Green sd",
+                                  title.vjust = 0.5,
+                                  barheight = 20,
+                                  barwidth = 2.5,
+                                  frame.colour = "black")) +
+  geom_sf(data = rmr_trart, color = "black", fill = "transparent", linewidth = 1) +
+  facet_wrap(~lyr) +
+  labs(title = "Green SD") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        plot.title = element_text(color = "black", size = 30, hjust = 0.5),
+        strip.text = element_text(color = "black", size = 20),
+        strip.background = element_rect(color = "black", fill = "gray"),
+        axis.line = element_line(color = "black", linewidth = 1))
+
+mapa_var_sd
+
+mapas_vars <- ls(pattern = "^mapa_var") |>
+  mget(envir = globalenv()) |>
+  patchwork::wrap_plots() +
+  patchwork::plot_layout(ncol = 2)
+
+mapas_vars
