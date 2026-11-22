@@ -456,3 +456,22 @@ mapas_vars <- ls(pattern = "^mapa_var") |>
   patchwork::plot_layout(ncol = 2)
 
 mapas_vars
+
+### Mapa da predição ----
+
+mapa_predicao <- ggplot() +
+  tidyterra::geom_spatraster(data = raster_pred_class) +
+  geom_sf(data = rmr_trart, color = "black", fill = "transparent", linewidth = 1) +
+  scale_fill_manual(values = c("orange", "forestgreen"),
+                    na.translate = FALSE,
+                    name = "Classe") +
+  labs(title = "Predição com Random Forest Espacial") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        axis.title = element_text(color = "black", size = 20),
+        axis.line = element_line(color = "black", linewidth = 1),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        plot.title =  element_text(color = "black", size = 30, hjust = 0.5))
+
+mapa_predicao
