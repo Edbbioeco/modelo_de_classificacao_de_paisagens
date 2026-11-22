@@ -303,3 +303,18 @@ randomforest <- ranger::ranger(Class ~ .,
                                importance = "permutation")
 
 randomforest
+
+## Importância das variáveis ----
+
+randomforest |>
+  ranger::importance() |>
+  tibble::enframe(name = "Variável",
+                  value = "Importância") |>
+  dplyr::mutate(Variável = Variável |>
+                  forcats::fct_reorder(Importância)) |>
+  ggplot(aes(Importância, Variável)) +
+  geom_col() +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        axis.title = element_text(color = "black", size = 20),
+        axis.line = element_line(color = "black", linewidth = 1))
