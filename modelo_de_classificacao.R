@@ -214,3 +214,12 @@ ggplot() +
                        direction = 1,
                        na.value = "transparent") +
   facet_wrap(~lyr)
+
+# Random forest ----
+
+## Extrair os dados ----
+
+valores <- rasters |>
+  terra::extract(pontos)
+
+valores
