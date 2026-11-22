@@ -224,7 +224,8 @@ ggplot() +
 ## Extrair os dados ----
 
 valores <- rasters |>
-  terra::extract(pontos)
+  terra::extract(pontos) |>
+  dplyr::mutate(classe = pontos$Class)
 
 valores
 
