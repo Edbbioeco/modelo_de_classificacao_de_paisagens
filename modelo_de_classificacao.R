@@ -318,3 +318,27 @@ randomforest |>
   theme(axis.text = element_text(color = "black", size = 20),
         axis.title = element_text(color = "black", size = 20),
         axis.line = element_line(color = "black", linewidth = 1))
+
+### Predição do raster ----
+
+raster_pred <- terra::predict(rasters,
+                              randomforest,
+                              fun = \(modelo, dados, ...){
+
+                                stats::predict(modelo, dados)$predictions[, "1"]
+
+                                },
+                              na.rm = TRUE)
+
+raster_pred
+
+ggplot() +
+  tidyterra::geom_spatraster(data = raster_pred) +
+  scale_fill_distiller(palette = "RdYlGn",
+                       direction = 1,
+                       limits = c(0, 1),
+                       na.value = "transparent") +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        axis.title = element_text(color = "black", size = 20),
+        axis.line = element_line(color = "black", linewidth = 1))
