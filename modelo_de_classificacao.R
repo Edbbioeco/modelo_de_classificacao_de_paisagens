@@ -492,3 +492,7 @@ mapa_predicao
 
 (mapas_vars_titulo | mapa_predicao) +
   patchwork::plot_layout(widths = c(2, 1))
+
+ggsave(filename = "mapa_predicao_vars.png",
+       height = 12,
+       width = 20)
