@@ -304,6 +304,12 @@ randomforest <- ranger::ranger(Class ~ .,
 
 randomforest
 
+### Salvar o modelo ----
+
+randomforest |> readr::write_rds("random_forest.rds")
+
+randomforest <- readr::read_rds("random_forest.rds")
+
 ### Importância das variáveis ----
 
 randomforest |>
