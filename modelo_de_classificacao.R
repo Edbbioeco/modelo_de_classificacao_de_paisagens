@@ -461,6 +461,14 @@ mapas_vars <- ls(pattern = "^mapa_var") |>
 
 mapas_vars
 
+mapas_vars_titulo <- patchwork::wrap_elements(full = mapas_vars) +
+  ggplot2::ggtitle("Preditores") +
+  ggplot2::theme(plot.title = ggplot2::element_text(color = "black",
+                                                    size = 30,
+                                                    hjust = 0.5))
+
+mapas_vars_titulo
+
 ### Mapa da predição ----
 
 mapa_predicao <- ggplot() +
@@ -482,5 +490,5 @@ mapa_predicao
 
 ### Unir os mapas ----
 
-(mapas_vars | mapa_predicao) +
+(mapas_vars_titulo | mapa_predicao) +
   patchwork::plot_layout(widths = c(2, 1))
