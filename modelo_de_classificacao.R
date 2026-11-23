@@ -453,7 +453,11 @@ mapa_var_sd
 mapas_vars <- ls(pattern = "^mapa_var") |>
   mget(envir = globalenv()) |>
   patchwork::wrap_plots() +
-  patchwork::plot_layout(ncol = 2)
+  patchwork::plot_layout(ncol = 2) +
+  patchwork::plot_annotation(title = "Preditores",
+                             theme = theme(plot.title = element_text(color = "black",
+                                                                     size = 30,
+                                                                     hjust = 0.5)))
 
 mapas_vars
 
