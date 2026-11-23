@@ -479,3 +479,8 @@ mapa_predicao <- ggplot() +
         plot.title =  element_text(color = "black", size = 30, hjust = 0.5))
 
 mapa_predicao
+
+### Unir os mapas ----
+
+(mapas_vars | mapa_predicao) +
+  patchwork::plot_layout(widths = c(2, 1))
