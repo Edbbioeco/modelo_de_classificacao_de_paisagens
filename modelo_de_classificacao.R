@@ -502,3 +502,33 @@ mapa_predicao
 ggsave(filename = "mapa_predicao_vars.png",
        height = 12,
        width = 20)
+
+
+# Mapa lado-a-lado interativo ----
+
+## Criar mapa ----
+
+mapa_lado_a_lado <- leaflet::leaflet() |>
+  leaflet::addMapPane("esquerda", zIndex = 0) |>
+  leaflet::addMapPane("direita", zIndex = 0) |>
+  leaflet::addTiles(urlTemplate = "",
+                    layerId = "tile_esq",
+                    options = leaflet::pathOptions(pane = "esquerda")) |>
+  leaflet::addTiles(urlTemplate = "",
+                    layerId = "tile_dir",
+                    options = leaflet::pathOptions(pane = "direita")) |>
+  leafem::addRasterRGB(rasters[[c("R", "G", "B")]],
+                       r = 1, g = 2, b = 3,
+                       na.color = "transparent",
+                       options = leaflet::leafletOptions(pane = "esquerda")) |>
+  leaflet::addRasterImage(raster_pred_class,
+                          colors = leaflet::colorFactor(
+                            c("goldenrod", "darkgreen"),
+                            domain = 1:2,
+                            na.color = "transparent"),
+                          method = "ngb",
+                          options = leaflet::leafletOptions(pane = "direita")) |>
+  leaflet.extras2::addSidebyside(leftId = "tile_esq",
+                                 rightId = "tile_dir")
+
+mapa_lado_a_lado
