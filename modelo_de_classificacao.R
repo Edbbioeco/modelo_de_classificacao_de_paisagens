@@ -532,3 +532,10 @@ mapa_lado_a_lado <- leaflet::leaflet() |>
                                  rightId = "tile_dir")
 
 mapa_lado_a_lado
+
+## Salvar mapa ----
+
+mapa_lado_a_lado |>
+  htmlwidgets::saveWidget(file = "mapa.html",
+                          selfcontained = TRUE,
+                          title = "Classificação de cobertura do solo")
