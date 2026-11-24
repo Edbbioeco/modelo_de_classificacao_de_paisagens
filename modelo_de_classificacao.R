@@ -24,6 +24,8 @@ library(ggview)
 
 library(patchwork)
 
+library(leaflet)
+
 # Dados ----
 
 ## Shapefile da região metropolitana de Recife ----
