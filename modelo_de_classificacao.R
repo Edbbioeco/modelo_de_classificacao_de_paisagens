@@ -16,8 +16,6 @@ library(tidyterra)
 
 library(ranger)
 
-library(DescTools)
-
 library(ggspatial)
 
 library(ggview)
