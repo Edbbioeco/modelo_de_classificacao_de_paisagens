@@ -16,8 +16,6 @@ library(tidyterra)
 
 library(ranger)
 
-library(ggview)
-
 library(patchwork)
 
 library(leaflet)
