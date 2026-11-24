@@ -26,6 +26,8 @@ library(patchwork)
 
 library(leaflet)
 
+library(leaflet.extras)
+
 # Dados ----
 
 ## Shapefile da região metropolitana de Recife ----
