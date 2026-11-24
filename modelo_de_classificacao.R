@@ -28,6 +28,8 @@ library(leaflet)
 
 library(leaflet.extras)
 
+library(htmlwidgets)
+
 # Dados ----
 
 ## Shapefile da região metropolitana de Recife ----
