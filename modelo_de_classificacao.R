@@ -14,6 +14,8 @@ library(terra)
 
 library(tidyterra)
 
+library(blockCV)
+
 library(ranger)
 
 library(patchwork)
