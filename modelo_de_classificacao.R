@@ -16,8 +16,6 @@ library(tidyterra)
 
 library(ranger)
 
-library(ggspatial)
-
 library(ggview)
 
 library(patchwork)
